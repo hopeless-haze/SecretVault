@@ -26,7 +26,7 @@ public sealed class SecretProtector
         ArgumentNullException.ThrowIfNull(plaintext);
 
         var plainBytes = Encoding.UTF8.GetBytes(plaintext);
-        var nonce = new byte[NonceSize];   // 12 нулей — одинаковые каждый раз // новый для КАЖДОГО вызова
+        var nonce = RandomNumberGenerator.GetBytes(NonceSize);   // 12 нулей — одинаковые каждый раз // новый для КАЖДОГО вызова
         var cipherBytes = new byte[plainBytes.Length];          // GCM не меняет длину
         var tag = new byte[TagSize];
 
