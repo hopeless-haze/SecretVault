@@ -37,4 +37,15 @@ public class SecretProtectorTests
         // Шаг 5: проверить, что результаты разные
         Assert.NotEqual(first, second);
     }
+
+    [Fact]
+    public void Unprotect_EmptyString_ReturnsEmptyString()
+    {
+        var protector = CreateProtector();
+        var original = "";
+
+        var result = protector.Unprotect(protector.Protect(original));
+
+        Assert.Equal(original, result);
+    }
 }
